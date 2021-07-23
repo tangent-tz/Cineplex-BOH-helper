@@ -5,7 +5,7 @@ def filtermovienames(movie_name):
     return movie_name
 
 def filterjunk(movie_time,movie_name):
-    filter=['pairedandDescriptiveServiceforthevisuallyim','paired(CC/DS)3DATMOSULTRAAVXReclinerSeatsFAUTEUILSINCLINABLES(CC/DS)','trailerClosedCaptionsforthehearingim','ClosedCaptionsforthehearingim','Nopassestrailer3DATMOSULTRAAVXReclinerSeatsFAUTEUILSINCLINABLES','Nopassestrailer','||','|||','trailer','Nopasses']
+    filter=['pairedandDescriptiveServiceforthevisuallyim','paired(CC/DS)3DATMOSULTRAAVXReclinerSeatsFAUTEUILSINCLINABLES(CC/DS)','trailerClosedCaptionsforthehearingim','ClosedCaptionsforthehearingim','Nopassestrailer3DATMOSULTRAAVXReclinerSeatsFAUTEUILSINCLINABLES','Nopassestrailer','||','|||','trailer','Nopasses','3DATMOSULTRAAVXReclinerSeatsFAUTEUILSINCLINABLES']
     extrafilters=filtermovienames(movie_name)
     for i in range(len(extrafilters)):
         filter.append(extrafilters[i])
