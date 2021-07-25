@@ -12,3 +12,11 @@ def filterjunk(movie_time,movie_name):
     for i in range(len(filter)):
         movie_time=movie_time.replace(filter[i],'')
     return movie_time
+
+def filtertime(movie_time):
+    movie_time=movie_time.replace(' ','')
+    movie_time=movie_time.replace('0pm','0pm|')
+    movie_time=movie_time.replace('5pm','5pm|')
+    movie_time=movie_time.replace('0am','0am|')
+    movie_time=movie_time.replace('5am','5am|')
+    return movie_time
