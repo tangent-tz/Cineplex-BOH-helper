@@ -1,4 +1,5 @@
 
+
 def filtermovienames(movie_name):
     for i in range(len(movie_name)):
         movie_name[i]=movie_name[i].replace(' ','')

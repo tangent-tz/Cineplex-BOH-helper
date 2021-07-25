@@ -1,3 +1,4 @@
+from Showtype import showTypes
 from MovieNames import *
 from MovieTimes import *
 from filter import filterjunk, filtertime
@@ -24,8 +25,15 @@ if __name__ == "__main__":
      soup=BeautifulSoup(html, 'lxml')
      movies=soup.find_all(class_='movie-showtimes-row row ng-scope')
      moviename=getMovieNames(movies,movie_name,moviename)
-     movienametime=getMovieTimes(movies,movie_name, movienametime)
+     movienametime=getMovieTimes(soup)
+     showtypes=showTypes(soup)
+     size=getCount(soup)
+     print("\n")
      for i in range(len(movie_name)):
           print(moviename[i])
-          print(movienametime[i],"\n")
+          for j in range(size[i]):
+               print(showtypes[j].upper())
+               print(movienametime[j])
+               print("\n")
+          print("\n")
      driver.quit()
