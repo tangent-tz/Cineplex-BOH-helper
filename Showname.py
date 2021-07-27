@@ -28,12 +28,14 @@ if __name__ == "__main__":
      movienametime=getMovieTimes(soup)
      showtypes=showTypes(soup)
      size=getCount(soup)
-     print("\n")
-     for i in range(len(movie_name)):
-          print(moviename[i])
-          for j in range(size[i]):
-               print(showtypes[j].upper())
-               print(movienametime[j])
-               print("\n")
-          print("\n")
+    # url_seating=movie_meta_datas(soup)
+
+     # print("\n")
+     # for i in range(len(movie_name)):
+     #      print(moviename[i])
+     #      for j in range(size[i]):
+     #           print(showtypes[j].upper())
+     #           print(movienametime[j])
+     #           print("\n")
+     #      print("\n")
      driver.quit()
