@@ -2,7 +2,9 @@ from Parsers import *
 from Showtype import showTypes
 from MovieNames import *
 from MovieTimes import *
+from MovieTicketSales import movieTicketSales
 from filter import filterjunk, filtertime
+from Utilities import *
 from bs4 import BeautifulSoup
 import requests
 import time
@@ -14,6 +16,12 @@ from selenium.webdriver.support import expected_conditions as EC
 import pathlib
 import urllib.request
 import json
+
+#Features implmeneted so far
+#    Success fully retreives the name of all the movie running in the threatre, Check Function getMovieNames()
+#    Recovers all the type of threates (DBOX/ULTRAAVX/VIP/REGULAR/ETC) running in the threatres
+#    Recovers all the movie running time from the threates
+#    Recovers all the ticket sales so far for the movies
 
 if __name__ == "__main__":
      movie_time=[]
@@ -36,36 +44,13 @@ if __name__ == "__main__":
      driver.get("https://www.cineplex.com/Theatre/cineplex-cinemas-marine-gateway-and-vip")
      html=driver.page_source
      soup=BeautifulSoup(html, 'lxml')
-     movies=soup.find_all(class_='movie-showtimes-row row ng-scope')
-     moviename=getMovieNames(movies,movie_name,moviename)
+     moviename=getMovieNames(soup,movie_name,moviename)
      movie_time=getMovieTimes(soup)
      showtypes=showTypes(soup)
-     size=getCount(soup)
      url_seating=movie_ticket_link_parser(soup)
- 
-     seats=[]
-     for i in range(len(url_seating)):
-          driver.get(url_seating[i])
-          test=WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.ID, "seatAvailabilityMessage")))
-          result=driver.find_element_by_id("seatAvailabilityMessage")
-          seats.append(result.text)
-          driver.close()
-          driver = webdriver.Chrome(PATH, options=options)
-     temp=0
      movie_time_refined=[]
      movie_time_refined=movie_time_refiner(movie_time)
-     for i in range(len(movie_time_refined)):
-          for j in range(len(movie_time_refined[i])):
-               #movie_time_refined[i][j]=movie_time_refined[i][j]+ "&& "+seats[temp]
-               print(temp)
-               temp=temp+1
-     print("test:",len(seats))
-     print("test1:",len(movie_time_refined))
-     print("\n")
-     for i in range(len(movie_name)):
-          print(moviename[i])
-          for j in range(size[i]):
-               print(showtypes[j].upper())
-               print(movie_time_refined[j])
-               print("\n")
-          print("\n")
+     size=getCount(movie_time_refined)
+    # seats=movieTicketSales(url_seating, options)
+     print(movie_name)
+     driver.quit()
