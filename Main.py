@@ -51,6 +51,10 @@ if __name__ == "__main__":
      movie_time_refined=[]
      movie_time_refined=movie_time_refiner(movie_time)
      size=getCount(movie_time_refined)
-    # seats=movieTicketSales(url_seating, options)
-     print(movie_name)
+     #seats=movieTicketSales(url_seating, options)
+     show_type_per_movie=numberOfShowTypesPerMovie(soup)
+     movie_per_show_type=getCount(movie_time_refined)
+     
+     printer(movie_name,show_type_per_movie,showtypes,movie_time_refined)
+
      driver.quit()
