@@ -24,4 +24,14 @@ def printer(movie_name,show_type_per_movie,showtypes,movie_time_refined):
             print(showtypes[iter])
             print(movie_time_refined[iter])
             iter+=1
+
+def TicketSalesOnline(soup):
+    test=soup.find_all(class_="showtime-wrap clearfix ng-scope")
+    temp=[]
+    for i in range(len(test)):
+        if(test[i].find(class_="seatMapDisabled seatMapLink ng-scope")!= None):
+            temp.append("0")
+        else:
+            temp.append("1")
+    return temp
     

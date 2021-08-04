@@ -30,3 +30,16 @@ def movie_time_refiner(movie_time):
         temp.remove('')
         target.append(temp)
     return target
+
+def movieSalesStatus(ticket_sales_status, seats):
+    temp=[None]*len(ticket_sales_status)
+    seatcounter=0
+    ticketcounter=0
+    while(ticketcounter<len(ticket_sales_status)):
+        if(ticket_sales_status[ticketcounter]=='1'):
+            temp[ticketcounter]=seats[seatcounter]
+            seatcounter+=1
+        else:
+            temp[ticketcounter]="Show sold out"
+        ticketcounter+=1
+    return temp
