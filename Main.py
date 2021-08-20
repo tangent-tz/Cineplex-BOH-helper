@@ -58,7 +58,19 @@ if __name__ == "__main__":
      
      temp=movieSalesStatus(ticket_sales_status, seats)
      
-     
-     printer(movie_name,show_type_per_movie,showtypes,movie_time_refined,temp)
+     print(movie_per_show_type)
+     x=0
+     A=[]
+     B=[]
+     for temped in enumerate(movie_per_show_type):
+          for i in range(temped[1]):
+               #rint(temp[x])
+               A.append(temp[x])
+               x+=1
+          B.append(A)
+          A=[]
+          #print("next show")
+
+     printer(movie_name,show_type_per_movie,showtypes,movie_time_refined, temp, B)
 
      driver.quit()
