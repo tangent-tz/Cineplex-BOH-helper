@@ -5,6 +5,7 @@ from MovieTimes import *
 from MovieTicketSales import movieTicketSales
 from filter import filterjunk, filtertime
 from Utilities import *
+from Guestnumber import *
 from bs4 import BeautifulSoup
 import requests
 import time
@@ -57,20 +58,8 @@ if __name__ == "__main__":
      movie_per_show_type=getCount(movie_time_refined)
      
      temp=movieSalesStatus(ticket_sales_status, seats)
-     
-     print(movie_per_show_type)
-     x=0
-     A=[]
-     B=[]
-     for temped in enumerate(movie_per_show_type):
-          for i in range(temped[1]):
-               #rint(temp[x])
-               A.append(temp[x])
-               x+=1
-          B.append(A)
-          A=[]
-          #print("next show")
+     Guestlist=guestnumber(movie_per_show_type, temp)
 
-     printer(movie_name,show_type_per_movie,showtypes,movie_time_refined, temp, B)
+     printer(movie_name,show_type_per_movie,showtypes,movie_time_refined, Guestlist)
 
      driver.quit()

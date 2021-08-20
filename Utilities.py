@@ -15,7 +15,7 @@ def copyconstructor(tocopy):
         temp.append(tocopy[i])
     return temp
 
-def printer(movie_name,show_type_per_movie,showtypes,movie_time_refined, temp, B):
+def printer(movie_name,show_type_per_movie,showtypes,movie_time_refined, Guestlist):
     iter=0
     iter1=0
     for i, names in enumerate (show_type_per_movie):
@@ -23,7 +23,7 @@ def printer(movie_name,show_type_per_movie,showtypes,movie_time_refined, temp, B
         for j in range(show_type_per_movie[i]):
             print(showtypes[iter])
             print(movie_time_refined[iter])
-            print(B[iter])
+            print(Guestlist[iter])
             iter+=1
 
 def TicketSalesOnline(soup):

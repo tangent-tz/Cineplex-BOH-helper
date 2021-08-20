@@ -40,6 +40,6 @@ def movieSalesStatus(ticket_sales_status, seats):
             temp[ticketcounter]=seats[seatcounter]
             seatcounter+=1
         else:
-            temp[ticketcounter]="Show sold out"
+            temp[ticketcounter]="Ticket Sales Closed"
         ticketcounter+=1
     return temp
