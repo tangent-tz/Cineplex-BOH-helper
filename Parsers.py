@@ -1,5 +1,5 @@
 
-def  movie_ticket_link_parser(soup):
+def  getMovieTicketUrl(soup):
     id= soup.find_all('a', class_="showtime ng-binding ng-scope")
     for index, identities in enumerate(id):
         id[index]=id[index].get("id")
@@ -23,7 +23,7 @@ def  movie_ticket_link_parser(soup):
         url_arr.append("https://onlineticketing.cineplex.com/SeatMap.aspx?locationId=1145&vistaSessionId="+url_data1_arr[i]+"&VISTAHOAreaCategoryCode="+url_data2_arr[i]+"&isExternal=True")
     return url_arr
 
-def movie_time_refiner(movie_time):
+def pretty_MovieTime(movie_time):
     target=[]
     for i in range(len(movie_time)):
         temp=movie_time[i].split("|")

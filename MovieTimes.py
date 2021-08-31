@@ -9,14 +9,14 @@ def getMovieTimes(movies):
         moviesub[index]=filtertime(moviesub[index])
     return moviesub
 
-def getCount(movie_time_refined):
+def getMoviePerScreenType(movie_time_refined):
     moviecount=[]
     for i in range(len(movie_time_refined)):
         moviecount.append(len(movie_time_refined[i]))
     return moviecount
 
 
-def numberOfShowTypesPerMovie(movies):
+def getScreenTypesPerMovie(movies):
     moviecount=[]
     test=movies.find_all(class_="col-xs-12 col-sm-8 theatre-showtime-selection-wrapper")
     for index, movie in enumerate(test):

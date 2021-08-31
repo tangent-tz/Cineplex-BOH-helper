@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-def movieTicketSales(url_seating, options):
+def getTicketSoldStatus(url_seating, options):
     PATH = "C:\Program Files (x86)\chromedriver.exe"
     driver = webdriver.Chrome(PATH, options=options)     
     driver.execute_cdp_cmd("Page.setBypassCSP", {"enabled": True})

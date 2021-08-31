@@ -1,8 +1,8 @@
 from Parsers import *
-from Showtype import showTypes
+from Showtype import getShowTypes
 from MovieNames import *
 from MovieTimes import *
-from MovieTicketSales import movieTicketSales
+from MovieTicketSales import getTicketSoldStatus
 from filter import filterjunk, filtertime
 from Utilities import *
 from Guestnumber import *
@@ -25,9 +25,12 @@ import json
 #    Recovers all the ticket sales so far for the movies
 
 if __name__ == "__main__":
+
      movie_time=[]
      movie_name=[]
      moviename=[]
+     movie_time_refined=[]
+
      PATH = "C:\Program Files (x86)\chromedriver.exe"
      options = Options()
      options.add_argument('--no-sandbox')
@@ -40,23 +43,30 @@ if __name__ == "__main__":
      options.add_argument('--ignore-certificate-errors')
      
      driver = webdriver.Chrome(PATH, options=options)
-     
      driver.execute_cdp_cmd("Page.setBypassCSP", {"enabled": True})
+
+#Getting page source code
      driver.get("https://www.cineplex.com/Theatre/cineplex-cinemas-marine-gateway-and-vip")
      html=driver.page_source
      soup=BeautifulSoup(html, 'lxml')
+#Gets Movie Names
      moviename=getMovieNames(soup,movie_name,moviename)
+
+#Gets Movie Schedule
      movie_time=getMovieTimes(soup)
-     showtypes=showTypes(soup)
-     url_seating=movie_ticket_link_parser(soup)
-     movie_time_refined=[]
-     movie_time_refined=movie_time_refiner(movie_time)
-     size=getCount(movie_time_refined)
-     ticket_sales_status=TicketSalesOnline(soup)
-     seats=movieTicketSales(url_seating, options)
-     show_type_per_movie=numberOfShowTypesPerMovie(soup)
-     movie_per_show_type=getCount(movie_time_refined)
+
+#Gets Movie Screen type
+     showtypes=getShowTypes(soup)
+
+#Gets number of seats sold
+     url_seating=getMovieTicketUrl(soup)
+     movie_time_refined=pretty_MovieTime(movie_time)
+     ticket_sales_status=getTicketSales(soup)
      
+     seats=getTicketSoldStatus(url_seating, options)
+     show_type_per_movie=getScreenTypesPerMovie(soup)
+     movie_per_show_type=getMoviePerScreenType(movie_time_refined)
+          
      temp=movieSalesStatus(ticket_sales_status, seats)
      Guestlist=guestnumber(movie_per_show_type, temp)
 

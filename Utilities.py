@@ -18,15 +18,21 @@ def copyconstructor(tocopy):
 def printer(movie_name,show_type_per_movie,showtypes,movie_time_refined, Guestlist):
     iter=0
     iter1=0
+    thisdict={}
+    thisdict2={"Name": []}
     for i, names in enumerate (show_type_per_movie):
+        thisdict2["Name"]=movie_name[i]
         print(movie_name[i])
         for j in range(show_type_per_movie[i]):
             print(showtypes[iter])
             print(movie_time_refined[iter])
             print(Guestlist[iter])
+            thisdict[iter1]=thisdict2
             iter+=1
+        iter1+=1
+        print(thisdict)
 
-def TicketSalesOnline(soup):
+def getTicketSales(soup):
     test=soup.find_all(class_="showtime-wrap clearfix ng-scope")
     temp=[]
     for i in range(len(test)):
