@@ -59,19 +59,22 @@ if __name__ == "__main__":
      showtypes=getShowTypes(soup)
      
 #Gets number of seats sold
-     url_seating=getMovieTicketUrl(soup)
-     movie_time_refined=pretty_MovieTime(movie_time)
-     print(movie_time_refined)
-     ticket_sales_status=getTicketSales(soup)
+     # url_seating=getMovieTicketUrl(soup)
+     # movie_time_refined=pretty_MovieTime(movie_time)
+     # ticket_sales_status=getTicketSales(soup)
      
-     seats=getTicketSoldStatus(url_seating, options)
-     show_type_per_movie=getScreenTypesPerMovie(soup)
-     movie_per_show_type=getMoviePerScreenType(movie_time_refined)
+     # seats=getTicketSoldStatus(url_seating, options)
+     # show_type_per_movie=getScreenTypesPerMovie(soup)
+     # movie_per_show_type=getMoviePerScreenType(movie_time_refined)
           
-     temp=movieSalesStatus(ticket_sales_status, seats)
-     Guestlist=guestnumber(movie_per_show_type, temp)
+     # temp=movieSalesStatus(ticket_sales_status, seats)
+     # Guestlist=guestnumber(movie_per_show_type, temp)
 
-     test=printer(movie_name,show_type_per_movie,showtypes,movie_time_refined, Guestlist)
-     print(test)
-
+     # test=printer(movie_name,show_type_per_movie,showtypes,movie_time_refined, Guestlist)
+     # print(test)
+     # with open('MovieData.json', 'w') as fp:
+     #      json.dump(test, fp)
+     with open('MovieData.json', 'r') as fp:
+          data = json.load(fp)
+          print(data['0']['Name'])
      driver.quit()
