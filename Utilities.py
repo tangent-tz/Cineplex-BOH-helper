@@ -19,18 +19,23 @@ def printer(movie_name,show_type_per_movie,showtypes,movie_time_refined, Guestli
     iter=0
     iter1=0
     thisdict={}
-    thisdict2={"Name": []}
+    
     for i, names in enumerate (show_type_per_movie):
+        thisdict2={"Name": [],"Screen Type": [], "Time": [], "SeatsOccupied": []}
         thisdict2["Name"]=movie_name[i]
-        print(movie_name[i])
+        #print(movie_name[i])
         for j in range(show_type_per_movie[i]):
-            print(showtypes[iter])
-            print(movie_time_refined[iter])
-            print(Guestlist[iter])
-            thisdict[iter1]=thisdict2
+            thisdict2["Screen Type"].append(showtypes[iter])
+            thisdict2["Time"].append(movie_time_refined[iter])
+            thisdict2["SeatsOccupied"].append(Guestlist[iter])
+            #print(showtypes[iter])
+            #print(movie_time_refined[iter])
+            #print(Guestlist[iter])
             iter+=1
+        thisdict[i]=thisdict2
         iter1+=1
-        print(thisdict)
+        #print(thisdict)
+    return thisdict
 
 def getTicketSales(soup):
     test=soup.find_all(class_="showtime-wrap clearfix ng-scope")

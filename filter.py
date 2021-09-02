@@ -20,4 +20,5 @@ def filtertime(movie_time):
     movie_time=movie_time.replace('5pm','5pm|')
     movie_time=movie_time.replace('0am','0am|')
     movie_time=movie_time.replace('5am','5am|')
+    movie_time=movie_time.replace('SOLDOUT','')
     return movie_time

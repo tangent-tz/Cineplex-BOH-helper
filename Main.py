@@ -57,10 +57,11 @@ if __name__ == "__main__":
 
 #Gets Movie Screen type
      showtypes=getShowTypes(soup)
-
+     
 #Gets number of seats sold
      url_seating=getMovieTicketUrl(soup)
      movie_time_refined=pretty_MovieTime(movie_time)
+     print(movie_time_refined)
      ticket_sales_status=getTicketSales(soup)
      
      seats=getTicketSoldStatus(url_seating, options)
@@ -70,6 +71,7 @@ if __name__ == "__main__":
      temp=movieSalesStatus(ticket_sales_status, seats)
      Guestlist=guestnumber(movie_per_show_type, temp)
 
-     printer(movie_name,show_type_per_movie,showtypes,movie_time_refined, Guestlist)
+     test=printer(movie_name,show_type_per_movie,showtypes,movie_time_refined, Guestlist)
+     print(test)
 
      driver.quit()
