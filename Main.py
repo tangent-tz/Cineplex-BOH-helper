@@ -11,7 +11,7 @@ from Guestnumber import *
 from MovieNames import *
 from MovieTimes import *
 from Parsers import *
-from Showtype import getShowTypes
+from Showtype import getSreeningTypes
 from Utilities import *
 
 """Features implmeneted so far
@@ -21,10 +21,7 @@ from Utilities import *
     Recovers all the ticket sales so far for the movies"""
 
 if __name__ == "__main__":
-    movie_time = []
-    movie_name = []
-    moviename = []
-    movie_time_refined = []
+    moviename, movie_name, movie_time, movie_time_refined = ([] for lists in range(4))
     driver = webdriver.Chrome(config.DEFAULT_PATHS["DEFAULT_WEBDRIVER"], options=config.DEFAULT_WEBDRIVER_OPTION)
     driver.execute_cdp_cmd("Page.setBypassCSP", {"enabled": True})
 
@@ -33,14 +30,11 @@ if __name__ == "__main__":
     html = driver.page_source
     soup = BeautifulSoup(html, 'lxml')
 
-    # Gets Movie Names
     moviename = getMovieNames(soup, movie_name, moviename)
-
-    # Gets Movie Schedule
     movie_time = getMovieTimes(soup)
 
     # Gets Movie Screen type
-    showtypes = getShowTypes(soup)
+    showtypes = getSreeningTypes(soup)
 
     # Gets number of seats sold
     url_seating = getMovieTicketUrl(soup)
@@ -53,12 +47,11 @@ if __name__ == "__main__":
     movie_per_show_type = getMoviePerScreenType(movie_time_refined)
     #
     temp = movieSalesStatus(ticket_sales_status, seats)
-    Guestlist = guestnumber(movie_per_show_type, temp)
+    guest_list = guestnumber(movie_per_show_type, temp)
     #
-    test = printer(movie_name, show_type_per_movie, showtypes, movie_time_refined, Guestlist)
+    json_string = printer(movie_name, show_type_per_movie, showtypes, movie_time_refined, guest_list)
     with open('MovieData.json', 'w') as fp:
-        json.dump(test, fp)
+        json.dump(json_string, fp)
     with open('MovieData.json', 'r') as fp:
         data = json.load(fp)
     driver.quit()
-    print(data["0"])
