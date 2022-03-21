@@ -2,7 +2,6 @@ import json
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 
 
 import MovieTicketSales
@@ -21,7 +20,7 @@ from Utilities import *
     Recovers all the ticket sales so far for the movies"""
 
 if __name__ == "__main__":
-    moviename, movie_name, movie_time, movie_time_refined = ([] for lists in range(4))
+    movie_time, movie_time_refined = ([] for lists in range(2))
     driver = webdriver.Chrome(config.DEFAULT_PATHS["DEFAULT_WEBDRIVER"], options=config.DEFAULT_WEBDRIVER_OPTION)
     driver.execute_cdp_cmd("Page.setBypassCSP", {"enabled": True})
 
@@ -30,7 +29,7 @@ if __name__ == "__main__":
     html = driver.page_source
     soup = BeautifulSoup(html, 'lxml')
 
-    moviename = getMovieNames(soup, movie_name, moviename)
+    moviename = getMovieNames(soup)
     movie_time = getMovieTimes(soup)
 
     # Gets Movie Screen type
@@ -49,7 +48,7 @@ if __name__ == "__main__":
     temp = movieSalesStatus(ticket_sales_status, seats)
     guest_list = guestnumber(movie_per_show_type, temp)
     #
-    json_string = printer(movie_name, show_type_per_movie, showtypes, movie_time_refined, guest_list)
+    json_string = printer(moviename, show_type_per_movie, showtypes, movie_time_refined, guest_list)
     with open('MovieData.json', 'w') as fp:
         json.dump(json_string, fp)
     with open('MovieData.json', 'r') as fp:
