@@ -1,4 +1,4 @@
-from filter import *
+from MovieInfoScrapperFuncs.filter import *
 
 
 def getMovieTimes(movies):
@@ -6,7 +6,7 @@ def getMovieTimes(movies):
     movie_time = movies.find_all(class_="showtime-grid col-xs-12")
     for index, movie in enumerate(movie_time):
         movie_sub.append(movie.text.replace('\n', ''))
-        movie_sub[index] = filterJunkTime(movie_sub[index])
+        movie_sub[index] = filter_movie_time_data(movie_sub[index])
     return movie_sub
 
 
